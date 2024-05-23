@@ -1,5 +1,5 @@
 export default function DifficultyPill({ difficulty }) {
-    let styling = "text-lg px-4 text-slate-200 py-2 font-bold first-letter:uppercase rounded-full "
+    let styling = "text-lg text-center px-4 py-3 text-slate-200 font-bold first-letter:uppercase rounded-full "
 
     switch (difficulty) {
         case 'easy':
@@ -14,7 +14,6 @@ export default function DifficultyPill({ difficulty }) {
         default:
             console.log("That wasn't supposed to happen..." + difficulty);
     }
-
 
     return (
         <p className={styling}>{ difficulty }</p>

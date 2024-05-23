@@ -8,4 +8,5 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 API Currently Being used: https://the-trivia-api.com/docs/v2/
+
 `GET` request at `https://the-trivia-api.com/v2/questions` returns an object of 10 trivia questions

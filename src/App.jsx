@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import QuestionList from './components/QuestionList';
+import QuestionContainer from './components/QuestionContainer';
 
 function App() {
   const [questionList, setQuestionList] = useState("");
@@ -7,7 +7,10 @@ function App() {
   useEffect(() => {
     fetch("https://the-trivia-api.com/v2/questions")
       .then(res => res.json())
-      .then(data => setQuestionList(data))
+      .then(data => {
+        setQuestionList(data)
+        console.log(data.map(question => question.category))
+      })
       .catch(e => console.log(e))
   }, []);
 
@@ -16,7 +19,9 @@ function App() {
   }
 
   return (
-    <QuestionList questions={questionList} />
+    <div className="flex items-center justify-center min-h-screen max-w-xlg">
+      <QuestionContainer questions={questionList} />
+    </div>
   )
 }
 

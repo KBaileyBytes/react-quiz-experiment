@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Arial', sans-serif;
     font-size: larger;
     line-height: 1.5;
   

@@ -1,16 +1,16 @@
 import AnswerList from "./AnswerList";
+import CategoryIcon from "./CategoryIcon";
 import DifficultyPill from "./DifficultyPill";
 
-export default function Question({ currentQuestion, turn, children }) {
+export default function Question({ currentQuestion, }) {
     return (
-        <div className="container p-12 bg-slate-700 rounded-lg border-2 border-slate-600 drop-shadow-md">
-            <progress max={10} value={turn} className="rounded-full w-full my-8" />
-            <p className="text-4xl font-bold pb-4">{currentQuestion.question.text}</p>
-            <div className="flex py-4 items-center">
+        <>
+            <div className="flex justify-between py-4">
                 <DifficultyPill difficulty={currentQuestion.difficulty} />
-                <p className="text-lg font-bold px-8">{currentQuestion.category}</p>
+                <CategoryIcon category={currentQuestion.category} />
             </div>
-            <AnswerList incorrectAnswers={currentQuestion.incorrectAnswers} correctAnswer={currentQuestion.correctAnswer} />        
-        </div>
+            <p className="text-4xl font-bold pb-4">{currentQuestion.question.text}</p>
+            <AnswerList incorrectAnswers={currentQuestion.incorrectAnswers} correctAnswer={currentQuestion.correctAnswer} />   
+        </>
     );
 }

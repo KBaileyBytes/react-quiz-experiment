@@ -16,23 +16,26 @@ export default function AnswerList({ incorrectAnswers, correctAnswer, children }
     }, []);
 
     return (
-        <div className="grid grid-rows-2 grid-flow-col gap-10 text-center my-8">
-            {answers.map((answer, index) => (
-                <Button key={index}   className="
-                font-bold 
-                text-xl 
-                px-4 
-                py-2 
-                rounded-full 
-                hover:bg-slate-800 
-                hover:text-slate-100 
-                max-w-full 
-                truncate 
-                sm:max-w-xs 
-                md:max-w-sm 
-                lg:max-w-md
-              ">{answer}</Button>
-            ))}
+        <div className="flex justify-center">
+            <div className="w-full grid grid-rows-2 grid-flow-col gap-6 text-center my-8">
+                {answers.map((answer, index) => (
+                <Button 
+                    key={index} 
+                    className="font-bold 
+                        text-xl 
+                        px-4 
+                        py-2 
+                        rounded-full 
+                        hover:bg-slate-800 
+                        hover:text-slate-100   
+                        sm:max-w-xs 
+                        md:max-w-sm 
+                        lg:max-w-md"
+                    onClick={() => console.log(answer === correctAnswer)}>
+                        {answer}
+                </Button>
+                ))}
+            </div>
         </div>
     );
 }

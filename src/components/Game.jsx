@@ -3,10 +3,10 @@ import { useContext, useEffect } from "react";
 import QuestionContainer from "./QuestionContainer";
 
 export default function Game({ children, ...props }) {
-  const { getQuestions, questions } = useContext(GameContext);
+  const { resetQuestions, questions } = useContext(GameContext);
 
   useEffect(() => {
-    getQuestions();
+    resetQuestions();
   }, []);
 
   if (questions.length < 1) {

@@ -14,10 +14,7 @@ export default function Question() {
         <CategoryIcon category={currentQuestion.category} />
       </div>
       <p className="text-4xl font-bold pb-4">{currentQuestion.question.text}</p>
-      <AnswerList
-        incorrectAnswers={currentQuestion.incorrectAnswers}
-        correctAnswer={currentQuestion.correctAnswer}
-      />
+      <AnswerList />
     </>
   );
 }

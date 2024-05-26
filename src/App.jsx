@@ -1,28 +1,15 @@
-import { useEffect, useState } from 'react';
-import QuestionContainer from './components/QuestionContainer';
+import Game from "./components/Game";
+import QuestionContainer from "./components/QuestionContainer";
+import GameContextProvider from "./store/GameContext";
 
 function App() {
-  const [questionList, setQuestionList] = useState("");
-  
-  useEffect(() => {
-    fetch("https://the-trivia-api.com/v2/questions")
-      .then(res => res.json())
-      .then(data => {
-        setQuestionList(data)
-        console.log(data.map(question => question.category))
-      })
-      .catch(e => console.log(e))
-  }, []);
-
-  if (!questionList) {
-    return <div className="flex items-center justify-center min-h-screen">Loading Questions...</div>
-  }
-
   return (
-    <div className="flex items-center justify-center min-h-screen max-w-xlg">
-      <QuestionContainer questions={questionList} />
-    </div>
-  )
+    <GameContextProvider>
+      <Game className="flex items-center justify-center min-h-screen pb-12">
+        <QuestionContainer className="w-[50rem] p-16 bg-slate-700 rounded-lg border-2 border-slate-600 drop-shadow-md" />
+      </Game>
+    </GameContextProvider>
+  );
 }
 
-export default App
+export default App;

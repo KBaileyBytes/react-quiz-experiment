@@ -1,18 +1,22 @@
 import { createContext, useState } from "react";
 
 export const GameContext = createContext({
-  turn: 1,
+  turn: 0,
+  setTurn: () => {},
   questions: [],
   resetQuestions: async () => {},
   currentQuestion: {},
-  correct: 0,
-  setCorrect: () => {},
+  handleAnswerClick: () => {},
+  totalCorrect: 0,
+  setTotalCorrect: () => {},
+  gameOver: false,
 });
 
 export default function GameContextProvider({ children }) {
   const [questionList, setQuestionList] = useState([]);
   const [turn, setTurn] = useState(0);
-  const [correct, setCorrect] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
+  const [totalCorrect, setTotalCorrect] = useState(0);
 
   const shuffleAnswers = (incorrectAnswers, correctAnswer) => {
     const answerList = [...incorrectAnswers, correctAnswer];
@@ -59,14 +63,30 @@ export default function GameContextProvider({ children }) {
     }
   };
 
+  function handleAnswerClick(selectedAnswer, correctAnswer) {
+    if (selectedAnswer === correctAnswer) {
+      console.log("Correct!");
+      setTotalCorrect((oldTotalCorrect) => oldTotalCorrect + 1);
+    }
+
+    if (turn === 9) {
+      console.log("Game over");
+      setGameOver(true);
+    } else {
+      setTurn((oldTurn) => oldTurn + 1);
+    }
+  }
+
   const gameContext = {
     turn,
     setTurn,
     questions: questionList,
     resetQuestions: fetchQuestionList,
     currentQuestion: questionList[turn] || {},
-    correct,
-    setCorrect,
+    handleAnswerClick,
+    totalCorrect,
+    setTotalCorrect,
+    gameOver,
   };
 
   return (

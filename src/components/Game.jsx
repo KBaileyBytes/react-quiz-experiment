@@ -1,15 +1,14 @@
 import { GameContext } from "../store/GameContext";
 import { useContext, useEffect } from "react";
-import QuestionContainer from "./QuestionContainer";
 
 export default function Game({ children, ...props }) {
-  const { resetQuestions, questions } = useContext(GameContext);
+  const { resetQuestions, questions, gameOver } = useContext(GameContext);
 
   useEffect(() => {
     resetQuestions();
   }, []);
 
-  if (questions.length < 1) {
+  if (questions.length === 0) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         Loading Questions...
@@ -17,5 +16,13 @@ export default function Game({ children, ...props }) {
     );
   }
 
-  return <div {...props}>{children}</div>;
+  if (gameOver) {
+    return <div>GAME OVER</div>;
+  }
+
+  return (
+    <div className="flex items-center justify-center min-h-screen pb-12">
+      {children}
+    </div>
+  );
 }

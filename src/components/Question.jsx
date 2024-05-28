@@ -9,11 +9,12 @@ export default function Question() {
 
   return (
     <>
+      <p className="text-4xl font-bold pb-4">{currentQuestion.question.text}</p>
+      <hr className="my-6 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
       <div className="flex justify-between py-4">
         <DifficultyPill difficulty={currentQuestion.difficulty} />
         <CategoryIcon category={currentQuestion.category} />
       </div>
-      <p className="text-4xl font-bold pb-4">{currentQuestion.question.text}</p>
       <AnswerList />
     </>
   );

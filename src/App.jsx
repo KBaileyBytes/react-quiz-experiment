@@ -2,15 +2,18 @@ import Game from "./components/Game";
 import GameContextProvider from "./store/GameContext";
 import TotalProgressBar from "./components/TotalProgressBar";
 import Question from "./components/Question";
+import Timer from "./components/Timer";
+import { useRef } from "react";
 
 function App() {
+  const timerRef = useRef();
+
   return (
     <GameContextProvider>
       <Game>
-        <section className="w-[50rem] p-16 bg-slate-700 rounded-lg border-2 border-slate-600 drop-shadow-md">
-          <TotalProgressBar />
-          <Question />
-        </section>
+        <TotalProgressBar />
+        <Timer ref={timerRef} />
+        <Question />
       </Game>
     </GameContextProvider>
   );

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const GameContext = createContext({
   turn: 0,
@@ -65,16 +65,20 @@ export default function GameContextProvider({ children }) {
 
   function handleAnswerClick(selectedAnswer, correctAnswer) {
     if (selectedAnswer === correctAnswer) {
-      console.log("Correct!");
       setTotalCorrect((oldTotalCorrect) => oldTotalCorrect + 1);
     }
 
-    if (turn === 9) {
-      console.log("Game over");
-      setGameOver(true);
-    } else {
-      setTurn((oldTurn) => oldTurn + 1);
-    }
+    console.log(selectedAnswer === correctAnswer);
+
+    setTurn((oldTurn) => {
+      if (oldTurn === 9) {
+        setGameOver(true);
+        console.log(`Right: ${totalCorrect}, Wrong: ${10 - totalCorrect}`);
+        return 0;
+      }
+
+      return oldTurn + 1;
+    });
   }
 
   const gameContext = {

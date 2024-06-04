@@ -22,7 +22,7 @@ export default function AnswerList() {
                         md:max-w-sm 
                         lg:max-w-md"
             onClick={() =>
-              handleAnswerClick(answer, currentQuestion.correctAnswer)
+              handleAnswerClick(index, answer, currentQuestion.correctAnswer)
             }
           >
             {answer}
